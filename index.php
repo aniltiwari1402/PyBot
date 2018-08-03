@@ -31,6 +31,7 @@ $response = new \stdClass();
 $response->speech = "Hi";
 $response->displayText = "Test";
 $response->source = "webhook";
+	header( 'Content-Type: application/json' );
 echo json_encode($response);
 
 
