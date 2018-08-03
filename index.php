@@ -1,31 +1,43 @@
 <?php
-/*
- * PROCESSANDO A MENSAGEM 
- * QUE CHEGA DO BOT
- */
-function processMessage($update) {
-    if($update["result"]["action"] == "buscar.nfe"){
-        sendMessage(array(
-            "source" => $update["result"]["source"],
-            "speech" => "..........TEXT HERE...........",
-            "displayText" => ".........TEXT HERE...........",
-            "contextOut" => array()
-        ));
-    }
-}
-/*
- * FUNÇÃO PARA ENVIAR A MENSAGEM
- */
-function sendMessage($parameters) {
-    echo json_encode($parameters);
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+//process only when method is POST
+if($method == "POST"){
+$requestBody = file_get_contents('php://input');
+$json = json_decode($requestBody);
+$text = $json->result->parameters->text;
+
+
+switch ($text) {
+	case 'hi':
+		$speech = "Hi, Nice to meet you";
+		break;
+
+		case 'bye':
+		$speech = "Bye, good night";
+		break;
+
+		case 'anything':
+		$speech = "yes, you can type anything here.";
+		break;
+	
+	default:
+		$speech = "sorry, I didnt get that. Please ask me something else";
+		break;
 }
 
-/*
- * PEGANDO A REQUISIÇÃO
- */
-$update_response = file_get_contents("php://input");
-$update = json_decode($update_response, true);
-if (isset($update["result"]["action"])) {
-    processMessage($update);
+$response = new \stdClass();
+$response->speech = $speech;
+$response->displayText = $speech;
+$response->source = "webhook";
+echo json_encode($response);
+
+
+
+}
+
+else{
+	echo "Method not allowed"
 }
 ?>
