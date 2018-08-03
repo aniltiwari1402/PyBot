@@ -1,6 +1,6 @@
 <?php
-echo "hello";
-echo $method = $_SERVER['REQUEST_METHOD'];
+
+$method = $_SERVER['REQUEST_METHOD'];
 
 //process only when method is POST
 if($method == "POST"){
@@ -23,13 +23,13 @@ switch ($text) {
 		break;
 	
 	default:
-		$speech = "sorry, I didnt get that. Please ask me something else.";
+		$speech = "sorry, I didnt get that. Please ask me something else";
 		break;
 }
 
 $response = new \stdClass();
-$response->speech = "Hi anil";
-$response->displayText = "Test";
+$response->speech = "";
+$response->displayText = "";
 $response->source = "webhook";
 echo json_encode($response);
 
