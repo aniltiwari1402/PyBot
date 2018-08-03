@@ -1,8 +1,6 @@
 <?php
 $method = $_SERVER['REQUEST_METHOD'];
 
-echo $method;
-
 //process only when method is POST
 if($method == "POST"){
 $requestBody = file_get_contents('php://input');
