@@ -28,7 +28,7 @@ switch ($text) {
 }
 
 $response = new \stdClass();
-$response->speech = "Hi";
+$response->speech = "Hi xyz";
 $response->displayText = "Test";
 $response->source = "webhook";
 echo json_encode($response);
