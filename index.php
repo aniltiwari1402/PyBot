@@ -1,5 +1,7 @@
 <?php
-echo $method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'];
+
+echo $method;
 
 //process only when method is POST
 if($method == "POST"){
