@@ -28,8 +28,8 @@ switch ($text) {
 }
 
 $response = new \stdClass();
-$response->speech = "";
-$response->displayText = "";
+$response->speech = "Hi";
+$response->displayText = "Test";
 $response->source = "webhook";
 echo json_encode($response);
 
